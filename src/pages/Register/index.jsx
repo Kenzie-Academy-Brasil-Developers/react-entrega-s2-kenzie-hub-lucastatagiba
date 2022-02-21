@@ -11,9 +11,21 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useEffect } from "react";
 
 export default function Register({ isAuth, apearPass, setApearPass }) {
-  const [isfaded] = useState(true);
+  const [isfaded, setIsFaded] = useState(true);
+  const [inputName, setInputName] = useState(false);
+  const [inputEmail, setInputEmail] = useState(false);
+  const [inputPassword, setInputPassword] = useState(false);
+  const [inputPwConfirm, setInputPwConfirm] = useState(false);
+
+  useEffect(() => {
+    inputName && inputEmail && inputPassword && inputPwConfirm
+      ? setIsFaded(false)
+      : setIsFaded(true);
+  }, [inputName, inputEmail, inputPassword, inputPwConfirm]);
+
   const history = useHistory();
 
   const formSchema = yup.object().shape({
@@ -62,7 +74,6 @@ export default function Register({ isAuth, apearPass, setApearPass }) {
   if (isAuth) {
     return <Redirect to="/" />;
   }
-  console.log(ContainerForm);
   return (
     <Container>
       <div className="cabecalhoRegister">
@@ -88,6 +99,11 @@ export default function Register({ isAuth, apearPass, setApearPass }) {
           placeholder="Digite aqui seu nome"
           name="name"
           label="name"
+          onKeyUp={(event) =>
+            event.target.value.length > 0
+              ? setInputName(true)
+              : setInputName(false)
+          }
         />
 
         <Input
@@ -97,6 +113,11 @@ export default function Register({ isAuth, apearPass, setApearPass }) {
           type="text"
           name="email"
           label="Email"
+          onKeyUp={(event) =>
+            event.target.value.length > 0
+              ? setInputEmail(true)
+              : setInputEmail(false)
+          }
         />
 
         <Input
@@ -109,6 +130,11 @@ export default function Register({ isAuth, apearPass, setApearPass }) {
           type={apearPass ? "text" : "password"}
           setApearPass={setApearPass}
           apearPass={apearPass}
+          onKeyUp={(event) =>
+            event.target.value.length > 0
+              ? setInputPassword(true)
+              : setInputPassword(false)
+          }
         />
 
         <Input
@@ -121,6 +147,11 @@ export default function Register({ isAuth, apearPass, setApearPass }) {
           type={apearPass ? "text" : "password"}
           setApearPass={setApearPass}
           apearPass={apearPass}
+          onKeyUp={(event) =>
+            event.target.value.length > 0
+              ? setInputPwConfirm(true)
+              : setInputPwConfirm(false)
+          }
         />
         <label>
           Selecionar módulo

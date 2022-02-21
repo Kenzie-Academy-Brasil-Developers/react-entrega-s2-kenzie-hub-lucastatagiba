@@ -48,7 +48,6 @@ export default function Login({
       .then((response) => {
         const { id } = response.data.user;
         const { token } = response.data;
-        console.log(response.data);
         localStorage.setItem(
           "@kenzieHub:userName",
           JSON.stringify(response.data.user.name)

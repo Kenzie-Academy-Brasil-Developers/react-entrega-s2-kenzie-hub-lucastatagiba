@@ -68,6 +68,7 @@ export default function Home({
             setTechsUpdate(!techsUpdate);
             toast.success("Tecnologia editada com sucesso");
             setShowTechEdit(false);
+            setSelectValue("Iniciante");
           })
       : toast.error(
           "Não foi possível editar essa tecnologia, tecnologia inexistente !"
