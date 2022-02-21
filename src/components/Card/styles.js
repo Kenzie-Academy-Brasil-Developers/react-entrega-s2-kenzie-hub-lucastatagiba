@@ -8,6 +8,10 @@ export const CardContent = styled.div`
   height: 48.73px;
   border-radius: 4.06px;
   justify-content: space-between;
+  width: 100%;
+  :hover {
+    background: var(--gray-2);
+  }
   h1 {
     font-weight: bold;
     font-size: 14.21px;

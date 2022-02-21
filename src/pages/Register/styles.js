@@ -17,7 +17,7 @@ export const Container = styled.div`
   }
 `;
 
-export const ContainerForm = styled.div`
+export const ContainerForm = styled.form`
   width: 90vw;
   max-width: 369px;
   display: flex;
@@ -35,6 +35,9 @@ export const ContainerForm = styled.div`
     font-size: 9.77px;
     font-weight: 400;
     padding-bottom: 17px;
+    span {
+      color: red;
+    }
   }
 
   div {

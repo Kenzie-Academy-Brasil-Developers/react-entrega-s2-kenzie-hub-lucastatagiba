@@ -9,6 +9,8 @@ export default function Button({
   historyEndPoint,
   fontSize,
   maxWidth,
+  callback,
+  type,
 }) {
   const history = useHistory();
   return (
@@ -16,9 +18,13 @@ export default function Button({
       width={width}
       height={height}
       color={color}
-      onClick={() => history.push(historyEndPoint)}
+      onClick={() => {
+        callback && callback();
+        history.push(historyEndPoint);
+      }}
       fontSize={fontSize}
       maxWidth={maxWidth}
+      type={type}
     >
       {children}
     </ButtonStyle>

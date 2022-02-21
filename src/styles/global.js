@@ -39,4 +39,7 @@ export default createGlobalStyle`
     a{
         text-decoration: none;
     }
+    .hidden{
+        display:none;
+    }
 `;
