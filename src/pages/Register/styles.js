@@ -62,5 +62,8 @@ export const ContainerForm = styled.form`
     border: none;
     color: var(--gray-1);
     margin-bottom: 17px;
+    :focus {
+      border: 1.21px solid var(--gray-0);
+    }
   }
 `;

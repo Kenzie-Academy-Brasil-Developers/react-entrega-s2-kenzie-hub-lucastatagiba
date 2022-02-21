@@ -2,7 +2,6 @@ import LogoImg from "../../assets/logo.svg";
 import { ContainerForm, Container } from "./styles";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import Input from "../../components/Input";
-import { useState } from "react";
 import Button from "../../components/Button";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -16,12 +15,11 @@ export default function Login({
   isAuth,
   setIsAuth,
   setUserData,
-  secondWordIndex,
-  setSecondWordIndex,
   setTechsUpdate,
   techsUpdate,
+  apearPass,
+  setApearPass,
 }) {
-  const [apearPass, setApearPass] = useState(false);
   const history = useHistory();
 
   const formSchema = yup.object().shape({
@@ -48,14 +46,9 @@ export default function Login({
       .post("sessions", userData)
 
       .then((response) => {
-        setSecondWordIndex(
-          response.data.user.course_module
-            .split("")
-            .findIndex((item) => item === "(")
-        );
         const { id } = response.data.user;
         const { token } = response.data;
-
+        console.log(response.data);
         localStorage.setItem(
           "@kenzieHub:userName",
           JSON.stringify(response.data.user.name)
@@ -71,10 +64,15 @@ export default function Login({
         localStorage.setItem(
           "@kenzieHub:courseStatus",
           JSON.stringify(
-            `${response.data.user.course_module
-              .split("")
-              .splice(secondWordIndex)
-              .join("")}`
+            `${
+              response.data.user.course_module.split(" ")[
+                response.data.user.course_module.split(" ").length - 2
+              ]
+            } ${
+              response.data.user.course_module.split(" ")[
+                response.data.user.course_module.split(" ").length - 1
+              ]
+            }`
           )
         );
         localStorage.setItem("@kenzieHub:userId", JSON.stringify(id));

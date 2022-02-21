@@ -9,10 +9,12 @@ export const InputContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-
-  
+  :focus-within {
+    border: 1.21px solid var(--gray-0);
   }
-
+  svg {
+    cursor: pointer;
+  }
   input {
     flex: 1;
     width: 100%;
@@ -23,6 +25,5 @@ export const InputContainer = styled.div`
     ::placeholder {
       color: var(--gray-1);
     }
-    
-  
+  }
 `;

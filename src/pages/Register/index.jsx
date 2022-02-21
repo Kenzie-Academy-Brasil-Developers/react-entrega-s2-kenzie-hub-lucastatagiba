@@ -10,8 +10,9 @@ import { api } from "../../services/api";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
-export default function Register({ isAuth }) {
+export default function Register({ isAuth, apearPass, setApearPass }) {
   const [isfaded] = useState(true);
   const history = useHistory();
 
@@ -61,7 +62,7 @@ export default function Register({ isAuth }) {
   if (isAuth) {
     return <Redirect to="/" />;
   }
-
+  console.log(ContainerForm);
   return (
     <Container>
       <div className="cabecalhoRegister">
@@ -104,6 +105,10 @@ export default function Register({ isAuth }) {
           placeholder="Digite aqui sua senha"
           name="password"
           label="Senha"
+          icon={apearPass ? FiEyeOff : FiEye}
+          type={apearPass ? "text" : "password"}
+          setApearPass={setApearPass}
+          apearPass={apearPass}
         />
 
         <Input
@@ -112,6 +117,10 @@ export default function Register({ isAuth }) {
           placeholder="Confirme sua senha"
           name="passwordConfirm"
           label="Confirmar senha"
+          icon={apearPass ? FiEyeOff : FiEye}
+          type={apearPass ? "text" : "password"}
+          setApearPass={setApearPass}
+          apearPass={apearPass}
         />
         <label>
           Selecionar módulo
@@ -124,21 +133,19 @@ export default function Register({ isAuth }) {
           <option value="Primeiro módulo (Frontend iniciante)">
             Primeiro módulo
           </option>
-          <option value="Segundo módulo   (Frontend intermediário)">
+          <option value="Segundo módulo (Frontend intermediário)">
             Segundo módulo
           </option>
-          <option value="Terceiro módulo    (Frontend avançado)">
+          <option value="Terceiro módulo (Frontend avançado)">
             Terceiro módulo
           </option>
-          <option value="Quarto módulo    (BackEnd iniciante)">
+          <option value="Quarto módulo (BackEnd iniciante)">
             Quarto módulo
           </option>
-          <option value="Quinto módulo    (BackEnd intermediário)">
+          <option value="Quinto módulo (BackEnd intermediário)">
             Quinto módulo
           </option>
-          <option value="Sexto módulo    (BackEnd avançado)">
-            Sexto módulo
-          </option>
+          <option value="Sexto módulo (BackEnd avançado)">Sexto módulo</option>
         </select>
         <Button
           width={90}

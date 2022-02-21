@@ -23,7 +23,6 @@ export default function Home({
   const [inputValue, setInputValue] = useState("");
   const [selectValue, setSelectValue] = useState("Iniciante");
 
-  console.log(courseModule);
   if (!isAuth) {
     return <Redirect to="/login" />;
   }
@@ -56,22 +55,23 @@ export default function Home({
 
   const handleTechEdit = () => {
     const token = JSON.parse(localStorage.getItem("@kenzieHub:token"));
-    const techId = techs.find((tech) => tech.title === inputValue).id;
-
+    const tech = techs.find((tech) => tech.title === inputValue);
     const techEditBody = { status: selectValue };
-    api
-      .put(`users/techs/${techId}`, techEditBody, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((_) => {
-        setTechsUpdate(!techsUpdate);
-        toast.success("Tecnologia editada com sucesso");
-      })
-      .catch((err) =>
-        toast.error("Não foi possível editar, status já definido")
-      );
+    !!tech
+      ? api
+          .put(`users/techs/${tech.id}`, techEditBody, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((_) => {
+            setTechsUpdate(!techsUpdate);
+            toast.success("Tecnologia editada com sucesso");
+            setShowTechEdit(false);
+          })
+      : toast.error(
+          "Não foi possível editar essa tecnologia, tecnologia inexistente !"
+        );
   };
   const handleTechDelete = () => {
     const token = JSON.parse(localStorage.getItem("@kenzieHub:token"));
@@ -115,8 +115,10 @@ export default function Home({
       <hr className="hrNav"></hr>
       <div className="header">
         <h1> Olá, {userName}</h1>
-        <h2> {courseModule} </h2>
-        <span>{courseStatus}</span>
+        <div className="courseDiv">
+          <h2> {courseModule} </h2>
+          <span>{courseStatus}</span>
+        </div>
       </div>
       <hr className="hrHeader"></hr>
       <div className="cardHeader">

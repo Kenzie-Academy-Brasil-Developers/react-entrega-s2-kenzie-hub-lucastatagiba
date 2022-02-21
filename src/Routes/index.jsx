@@ -9,12 +9,12 @@ import { api } from "../services/api";
 export default function Routes() {
   const [isAuth, setIsAuth] = useState(false);
   const [userData, setUserData] = useState({});
-  const [secondWordIndex, setSecondWordIndex] = useState(0);
   const [techs, setTechs] = useState([]);
   const [techsUpdate, setTechsUpdate] = useState(false);
   const [userName, setUserName] = useState("");
   const [courseModule, setCourseModule] = useState("");
   const [courseStatus, setCourseStatus] = useState("");
+  const [apearPass, setApearPass] = useState(false);
 
   useEffect(() => {
     setUserName(JSON.parse(localStorage.getItem("@kenzieHub:userName")));
@@ -61,16 +61,20 @@ export default function Routes() {
           isAuth={isAuth}
           setIsAuth={setIsAuth}
           setUserData={setUserData}
-          secondWordIndex={secondWordIndex}
-          setSecondWordIndex={setSecondWordIndex}
           userData={userData}
           setTechsUpdate={setTechsUpdate}
           techsUpdate={techsUpdate}
+          apearPass={apearPass}
+          setApearPass={setApearPass}
         />
       </Route>
 
       <Route path="/register">
-        <Register isAuth={isAuth} />
+        <Register
+          isAuth={isAuth}
+          apearPass={apearPass}
+          setApearPass={setApearPass}
+        />
       </Route>
     </Switch>
   );

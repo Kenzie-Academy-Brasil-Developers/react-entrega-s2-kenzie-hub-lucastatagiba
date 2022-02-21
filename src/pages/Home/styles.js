@@ -42,6 +42,16 @@ export const Container = styled.div`
     width: 100%;
     max-width: 779.73px;
 
+    @media (min-width: 600px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .courseDiv {
+      display: flex;
+      flex-direction: column;
+    }
+
     h1 {
       font-size: 18px;
       color: var(--gray-0);
