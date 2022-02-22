@@ -186,6 +186,7 @@ export default function Home({
                 label="Nome da tecnologia"
                 value={inputValue}
                 onChange={(event) => setInputValue(event.target.value)}
+                disabled={true}
               />
               <label> Selecionar status </label>
               <select

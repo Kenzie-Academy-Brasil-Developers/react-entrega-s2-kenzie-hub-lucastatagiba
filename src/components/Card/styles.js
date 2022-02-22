@@ -9,6 +9,8 @@ export const CardContent = styled.div`
   border-radius: 4.06px;
   justify-content: space-between;
   width: 100%;
+  cursor: pointer;
+
   :hover {
     background: var(--gray-2);
   }

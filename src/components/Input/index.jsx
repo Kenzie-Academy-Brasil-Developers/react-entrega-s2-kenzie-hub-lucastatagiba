@@ -9,6 +9,7 @@ export default function Input({
   error,
   label,
   handleChange,
+  disabled,
   ...rest
 }) {
   return (
@@ -17,8 +18,13 @@ export default function Input({
         {label}
         {!!error && <span> - {error}</span>}
       </label>
-      <InputContainer>
-        <input {...(register && { ...register(name) })} {...rest} name={name} />
+      <InputContainer color={disabled ? "--gray-1" : "--gray-0"}>
+        <input
+          {...(register && { ...register(name) })}
+          {...rest}
+          name={name}
+          disabled={disabled}
+        />
         {Icon && <Icon onClick={() => setApearPass(!apearPass)} />}
       </InputContainer>
     </>

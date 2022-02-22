@@ -20,7 +20,7 @@ export const InputContainer = styled.div`
     width: 100%;
     background-color: var(--gray-2);
     border: none;
-    color: white;
+    color: ${(props) => `var(${props.color})`};
 
     ::placeholder {
       color: var(--gray-1);
